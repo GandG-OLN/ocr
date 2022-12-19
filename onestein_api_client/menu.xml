@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="root_menu"
+        name="Onestein API"
+        parent="base.menu_custom"
+    />
+    <menuitem
+        id="onestein_api_config_menu"
+        name="Configuration"
+        parent="root_menu"
+        action="onestein_api_config_action"
+    />
+</odoo>
