@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_convention_collective,convention.collective,model_convention_collective,base.group_user,1,1,1,1
+access_convention_collective_line,convention.collective.line,model_convention_collective_line,base.group_user,1,1,1,1
+access_relation_famille,relation.famille,model_relation_famille,base.group_user,1,1,1,1
+access_hr_employee_bonus,hr.employee.bonus,model_hr_employee_bonus,base.group_user,1,1,1,1
+acces_save_alloc_mensuel,save.alloc.mensuel,model_save_alloc_mensuel,base.group_user,1,1,1,1
+access_employee_worked_days,employee.worked.days,model_employee_worked_days,base.group_user,1,1,1,1
+access_payor_payslip_lines_cotisation_ipres,payor.payslip.lines.cotisation.ipres,model_payor_payslip_lines_cotisation_ipres,base.group_user,1,1,1,1
+access_payor_payslip_lines_securite_sociale,payor.payslip.lines.securite.sociale,model_payor_payslip_lines_securite_sociale,base.group_user,1,1,1,1
+access_payor_declaration_retenues,payor.declaration.retenues,model_payor_declaration_retenues,base.group_user,1,1,1,1
+access_payor_transfer_order,payor.transfer.order,model_payor_transfer_order,base.group_user,1,1,1,1

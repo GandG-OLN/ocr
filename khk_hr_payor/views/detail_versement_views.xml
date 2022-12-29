@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- by khk -->
+<odoo>
+        <record model="ir.ui.view" id="detail_versement_form_view">
+            <field name="name">detail.versement.form</field>
+            <field name="model">detail.versement</field>
+            <field name="arch" type="xml">
+	            <form string="Details de Versement">
+                <sheet>
+                    <group>
+                        <field name="name" class="oe_inline bar" required="True"/>
+                    </group>
+                    <!--<group>
+                        <field name="company_id" readonly="True"/>
+                    </group>-->
+                    <notebook>
+                        <page>
+                            <field name="detail_versement_line">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="date_versement"/>
+                                    <field name="montant_versement" readonly="True"/>
+                                    <field name="montant_ir"/>
+                                    <field name="montant_trimf"/>
+                                    <field name="montant_cfce"/>
+                                    <field name="numero_quitance"/>
+                                    <field name="observation"/>
+                                    <field name="year" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+    <record id="optesis_detail_versement_tree" model="ir.ui.view">
+        <field name="name">detail.versement.tree</field>
+        <field name="model">detail.versement</field>
+        <field name="arch" type="xml">
+            <tree string="Details Versement">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="detail_versement_action" model="ir.actions.act_window">
+            <field name="name">Details Versement</field>
+            <field name="res_model">detail.versement</field>
+            <field name="view_mode">tree,form,search</field>
+    </record>
+
+    <menuitem id="detail_versement_menu"
+         parent="om_hr_payroll.menu_hr_payroll_root" action="detail_versement_action"
+         sequence="68"/>
+
+
+</odoo>
