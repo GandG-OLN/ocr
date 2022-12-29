@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="hr_contract_bonus_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.bonus.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//page[@name='information']" position="after">
+                <page name="bonus" string="Elements variables">
+                    <field name="bonus" context="{'default_contract_id':id,'default_employee_id':employee_id}"/>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="bonus_total">
+                        <field name="total_bonus" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </page>
+                <page string="Congés">
+                  <group string="Initialisation" invisible="1">
+                    <group>
+                      <field name="cumul_jour"/>
+                    </group>
+                    <group>
+                      <field name="cumul_conges"/>
+                    </group>
+                  </group>
+                  <group string="Nombre de jours aquis et nombre de jours pris">
+                    <group>
+                      <field name="nbj_aquis" readonly="True"/>
+                    </group>
+                    <group>
+                      <field name="nbj_sup" readonly="True"/>
+                    </group>
+                    <group>
+                      <label for="nbj_pris" string="Nombre jours pris" readonly="True"/>
+                      <div>
+                        <field name="nbj_pris" class="oe_inline" readonly="True"/> Jours
+                      </div>
+                    </group>
+                  </group>
+                  <group string="Calcul allocation congés">
+                    <group>
+                      <field name="cumul_mensuel" readonly="True"/>
+                      <field name="cumul_provision_fin_contrat" invisible="True"/>
+                      <field name="last_date" invisible="True"/>
+                    </group>
+                    <group>
+                      <field name="alloc_conges"/>
+                    </group>
+                  </group>
+                  <group>
+                    <group>
+                      <label for="nb_days"/>
+                      <div><field name="nb_days" class="oe_inline"/> Jours </div>
+                    </group>
+                  </group>
+              </page>
+              <!--<page string="Suivi congès payés">
+                <field name="holidays_tracking">
+                  <tree editable="bottom">
+                    <field name="date_from" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="date_to" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="number_of_days" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="state"/>
+                  </tree>
+                </field>
+                <field name="year_extra_day_anciennete" invisible="True"/>
+              </page>-->
+            </xpath>
+
+            <field name="wage" position="before">
+              <field name="convention_id"/>
+            </field>
+
+            <xpath expr="//field[@name='date_end']" position="after">
+              <field name="motif"/>
+              <field name="dateAnciennete" required="1"/>
+            </xpath>
+
+            <xpath expr="//form/sheet/group/group/field[1]" position="before">
+              <field name="typeContract" required="1"/>
+            </xpath>
+
+          </field>
+        </record>
+
+        <record id="employee_bonus__details_form" model="ir.ui.view">
+            <field name="name">Employee Bonus</field>
+            <field name="model">hr.employee.bonus</field>
+            <field name="arch" type="xml">
+                <form string="Employee bonus">
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="employee_id"/>
+                                <field name="salary_rule" />
+                                <label for="date_from" string="Policy Period"/>
+                          			<div>
+                          				<field name="date_from" class="oe_inline" on_change="1" />
+                          				  -
+                          				<field name="date_to" class="oe_inline" on_change="1" />
+                          			</div>
+                            </group>
+                            <group>
+                                <field name="amount"/>
+                                <field name="company_id"/>
+                                <field name="contract_id"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+        <record id="employee_bonus__details_tree" model="ir.ui.view">
+            <field name="name">Employee Bonus</field>
+            <field name="model">hr.employee.bonus</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Bonus">
+                    <field name="employee_id"/>
+                    <field name="salary_rule"/>
+                    <field name="date_from"/>
+				    <field name="date_to"/>
+                    <field name="amount"/>
+                    <field name="company_id" invisible="True"/>
+                    <field name="contract_id"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="view_hr_employee_bonus_filter" model="ir.ui.view">
+            <field name="name">hr.employee.bonus.filter</field>
+            <field name="model">hr.employee.bonus</field>
+            <field name="arch" type="xml">
+                <search string="Element Variable Recherche">
+                    <field name="employee_id" string="Employé"/>
+                    <field name="salary_rule" string="Règle salariale"/>
+                    <group col="8" colspan="4" expand="0" string="Group By">
+                        <filter string="Employé" name="employee_id" context="{'group_by':'employee_id'}"/>
+                        <filter string="Règle salariale" name="salary_rule" context="{'group_by':'salary_rule'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+        <record id="element_variable_action" model="ir.actions.act_window">
+            <field name="name">Elements Variables</field>
+            <field name="res_model">hr.employee.bonus</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    
+        <menuitem id="element_variable_menu"
+         parent="om_hr_payroll.menu_hr_payroll_configuration" action="element_variable_action"
+         sequence="19"/>
+
+
+    <!-- affiche amount par defaut -->
+    <record id="view_hr_payslip_line_pivot" model="ir.ui.view">
+       <field name="name">hr.payslip.line.pivot</field>
+       <field name="model">hr.payslip.line</field>
+       <field name="arch" type="xml">
+           <pivot string="Lignes de paie" >
+               <field name="total" type="measure"/>
+           </pivot>
+       </field>
+    </record>
+
+    <!--apply domain in hr payslip line-->
+    <record id="hr_payroll_payslip_line_company" model="ir.rule">
+        <field name="name">Payslips line of my Company</field>
+        <field name="model_id" ref="om_hr_payroll.model_hr_payslip_line"/>
+        <field eval="False" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+
+</odoo>

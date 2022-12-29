@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_payor_cotisation_ipres" model="ir.ui.view">
+            <field name="name">payor.payslip.lines.cotisation.ipres</field>
+            <field name="model">payor.payslip.lines.cotisation.ipres</field>
+            <field name="arch" type="xml">
+                <form string="Cotisation Ipres">
+                    <div>
+                        <group col="4" colspan="6">
+                            <field name="date_from"/>
+                            <newline/>
+                            <field name="date_to"/>
+                        </group>
+                    </div>
+                    <footer>
+                        <button name="print_report_ipres" string="Imprimer" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="payslip_lines_cotisation_ipres_value" model="ir.actions.act_window">
+            <field name="name">Cotisation Ipres</field>
+            <field name="res_model">payor.payslip.lines.cotisation.ipres</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+</odoo>

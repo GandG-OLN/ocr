@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <menuitem id="menu_payroll_reporting"
+              name="Analyses"
+              parent="om_hr_payroll.menu_hr_payroll_root"
+              sequence="75"/>
+    
+    
+        <!--<act_window id="hr_payslip_reporting"
+            res_model="hr.payslip.line"
+            view_mode="pivot,graph" />-->
+
+          <menuitem
+          id="payslip_lines_cotisation_ipres_value_menu_action"
+          parent="menu_payroll_reporting"
+          action="khk_hr_payor.payslip_lines_cotisation_ipres_value"
+          sequence="50"/>
+
+          <menuitem
+          id="payslip_lines_securite_sociale_value_menu_action"
+          action="khk_hr_payor.payslip_lines_securite_sociale_value"
+          parent="menu_payroll_reporting"
+          sequence="60"/>
+
+          <menuitem
+          id="launch_declaration_retenues_menu_action"
+          action="khk_hr_payor.declaration_retenues_value"
+          parent="menu_payroll_reporting"
+          sequence="70"/>
+    
+          <menuitem
+          id="launch_transfer_order_wizard_menu_action"
+          action="khk_hr_payor.transfer_order_wizard_value"
+          parent="menu_payroll_reporting"
+          sequence="80"/>
+    
+          <record id="hr_payslip_reporting" model="ir.actions.act_window">
+              <field name="name">View Pivot</field>
+              <field name="res_model">hr.payslip.line</field>
+              <field name="view_mode">pivot</field>
+              <field name="domain">[]</field>
+              <field name="help" type="html">
+                  <p class="oe_view_nocontent_create">Enter the target</p>
+              </field>
+          </record>
+    
+          <menuitem
+          id="reporting_menu_action"
+          name="Rapports"
+          action="hr_payslip_reporting"
+          parent="menu_payroll_reporting"
+          sequence="100"/>
+
+          <!--<menuitem
+          id="dads_menu_action"
+          action="launch_dads_report_wizard"
+          parent="om_hr_payroll.menu_hr_payroll_report"
+          sequence="90"/>-->
+
+</odoo>
