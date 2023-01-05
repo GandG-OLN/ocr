@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+        <record id="hr_employee_form_inherit_" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+          <xpath expr="//field[@name='identification_id']" position="before">
+            <field name="matricule_cnss" />
+            <field name="ipres"/>
+            <field name="mutuelle"/>
+          </xpath>
+
+          <xpath expr="//field[@name='bank_account_id']" position="after">
+            <field name="num_chezemployeur" string="Numéro chez l'employeur"/>
+          </xpath>
+
+          <xpath expr="//field[@name='country_id']" position="attributes">
+              <attribute name="required">True</attribute>
+          </xpath>
+            
+         <xpath expr="//field[@name='gender']" position="attributes">
+              <attribute name="required">True</attribute>
+         </xpath>
+            
+         <xpath expr="//field[@name='address_home_id']" position="attributes">
+              <attribute name="required">True</attribute>
+          </xpath>
+            
+        <xpath expr="//field[@name='spouse_complete_name']" position="attributes">
+              <attribute name="invisible">True</attribute>
+        </xpath>
+            
+        <xpath expr="//field[@name='spouse_birthdate']" position="attributes">
+              <attribute name="invisible">True</attribute>
+        </xpath>
+            
+        <xpath expr="//page[@name='hr_settings']" position="after">
+          <page string="Famille" name="famille" groups="om_hr_payroll.group_hr_payroll_manager,om_hr_payroll.group_hr_payroll_user">
+            <group colspan="2" col="2">
+              <group>
+                <field name="ir"/>
+              </group>
+              <group>
+                <field name="trimf"/>
+              </group>
+              <group>
+              </group>
+            </group>
+            <group>
+              <field name="relation_ids">
+                <tree editable="bottom">
+                  <field name="type"/>
+                  <field name="nom"/>
+                  <field name="prenom"/>
+                  <field name="birth" attrs="{'required':[('type','==','enfant')]}"/>
+                  <field name="date_mariage" attrs="{'required':[('type','==','conjoint')]}"/>
+                  <field name="salari"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+          <page string='Jours Travaillés' invisible="True">
+            <group>
+              <field name="worked_days_per_years" readonly="True">
+                <tree>
+                  <field name="year"/>
+                  <field name="worked_days"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+        </xpath>
+
+        </field>
+    </record>
+</odoo>

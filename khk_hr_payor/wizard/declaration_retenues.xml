@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_declaration_retenues" model="ir.ui.view">
+          <field name="name">payor.declaration.retenues</field>
+          <field name="model">payor.declaration.retenues</field>
+          <field name="arch" type="xml">
+            <form string="Contribution Register's Payslip Lines">
+                <group col="4" colspan="6">
+                    <field name="date_from"/>
+                    <newline/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Imprimer" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Annuler" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+          </field>
+      </record>
+
+        <record id="declaration_retenues_value" model="ir.actions.act_window">
+            <field name="name">Déclarations des retenues</field>
+            <field name="res_model">payor.declaration.retenues</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="onestein_api_client.CreditBalance">
+        <div class="">
+            <span class="font-weight-bold text-o-color-1">(</span>
+            <t t-esc="widget.credits" /> credits left <a href="https://api.onestein.eu/shop">Buy now</a>
+            <span class="font-weight-bold text-o-color-1">)</span>
+        </div>
+    </t>
+</templates>

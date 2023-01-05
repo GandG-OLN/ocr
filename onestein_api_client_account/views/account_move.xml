@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="button_onestein_api_ocr_upload"
+                        type="object"
+                        string="Scan with Onestein API"
+                        attrs="{'invisible':['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('in_invoice', 'in_refund'))]}"
+                        groups="account.group_account_invoice"
+                />
+                <widget
+                    attrs="{'invisible':['|', ('state', '!=', 'draft'), ('move_type', 'not in', ('in_invoice', 'in_refund'))]}"
+                    name="onestein_api_credit_balance" method="get_onestein_api_credit_balance"
+                    groups="account.group_account_invoice"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
